@@ -66,6 +66,29 @@ export class HeroesService {
   getHeroe(idx:string){
     return this.heroes[idx];
   }
+
+  buscarHeroes( termino:string){
+    let heroeArr:Heroe[] = [];
+
+    termino = termino.toLowerCase();
+    /*for (let heroe of this.heroes) {
+        let nombre = heroe.nombre.toLowerCase();
+        if (nombre.indexOf(termino) >= 0) {
+            heroeArr.push(heroe);
+        }
+    }*/
+
+    for (let i = 0; i < this.heroes.length; i++) {
+      console.log("entra");
+      let heroe = this.heroes[i];
+      let nombre = heroe.nombre.toLowerCase();
+      if (nombre.indexOf(termino) >= 0) {
+        heroe.idx = i;
+        heroeArr.push(heroe);
+      }
+    }
+    return heroeArr;
+  }
 }
 
 export interface Heroe{
@@ -74,4 +97,5 @@ export interface Heroe{
   img: string;
   aparicion: string;
   casa: string;
-}
+  idx?: number;
+};
